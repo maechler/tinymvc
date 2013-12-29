@@ -4,9 +4,6 @@
     <title>MyMVC - Application</title>
     
     <link href="ressource/css/styles.css" rel="stylesheet" type="text/css" />
-    
-    <script src="lib/jquery-1.10.2.js" type="text/javascript"></script>
-    <script src="ressource/js/MyMVC.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -52,6 +49,9 @@
         Page generated in: <strong><?= number_format(round((microtime(true) - START_TIME),3),3) ?>s</strong><br>
     </div>
 </div>
+
+<script src="lib/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="ressource/js/MyMVC.js" type="text/javascript"></script>
 
 </body>
 </html>

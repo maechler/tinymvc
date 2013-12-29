@@ -37,8 +37,11 @@ class XmlParser {
     }
 
 
+    /**
+     * @return array
+     */
     public function getXMLData() {
-        return $this->xmlData;
+        return is_array($this->xmlData) ? $this->xmlData : array();
     }
 
 }

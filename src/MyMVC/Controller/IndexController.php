@@ -8,6 +8,9 @@ use MyMVC\Model;
 
 class IndexController extends AbstractController {
     
+    /**
+     * @return void
+     */
     public function indexAction() {
         $xmlParser = new XmlParser(XML_PATH . 'tinyPersonData.xml');
         $xmlParser->parseXML();

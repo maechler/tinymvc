@@ -10,6 +10,12 @@ abstract class AbstractController {
     
     
     /**
+     * @var string
+     */
+    private $view;
+    
+    
+    /**
      * @param array $parameters
      * @return void
      */
@@ -27,14 +33,25 @@ abstract class AbstractController {
         if (!is_string($view)) throw new Exception('View Parameter must be string.', 1387808564);
         if (!is_array($variables)) $variables = array();
         
-        $filePath = VIEW_PATH . $view . '.php';
-        if (!file_exists($filePath)) throw new Exception('View Template not found in ' . $filePath . '.', 1387808790);
+        $this->view = $view;
+  
+        if (!file_exists($this->getFilePath())) throw new Exception('View Template not found in ' . $this->getFilePath() . '.', 1387808790);
 
         foreach ($variables as $key => $value) {
             $$key = $value;
         }
         
-        return include $filePath;
+        unset($key, $value, $view, $variables);
+        
+        return include $this->getFilePath();
+    }
+    
+    
+    /**
+     * @return string
+     */
+    public function getFilePath(){
+        return VIEW_PATH . $this->view . '.php';
     }
     
     

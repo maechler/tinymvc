@@ -1,10 +1,9 @@
 <?php
-namespace MyMVC\Controller;
+namespace MyApp\Controller;
 
-use MyMVC\Model\XmlParser;
+use MyApp\Model\XmlParser;
 
-use MyMVC\Controller\AbstractController;
-use MyMVC\Model;
+use TinyMVC\Controller\AbstractController;
 
 class IndexController extends AbstractController {
     
@@ -15,10 +14,21 @@ class IndexController extends AbstractController {
         $xmlParser = new XmlParser(XML_PATH . 'tinyPersonData.xml');
         $xmlParser->parseXML();
         
-        return $this->render('index', array(
+        return $this->render('Index/index', array(
             'xmlData' => $xmlParser->getXMLData(),
             'title' => 'List of some Persons'
         ));
     }
-
+    
+    
+    
+    /**
+     * @return void
+     */
+    public function secondAction() {
+        return $this->render('Index/second', array(
+            'title' => 'Page 2'
+        ));
+    }
+    
 }

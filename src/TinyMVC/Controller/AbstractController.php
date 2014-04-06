@@ -1,5 +1,5 @@
 <?php
-namespace MyMVC\Controller;
+namespace TinyMVC\Controller;
 
 abstract class AbstractController {
     
@@ -19,8 +19,8 @@ abstract class AbstractController {
      * @param array $parameters
      * @return void
      */
-    public function __construct($parameters) {
-        if (is_array($parameters)) $this->setParameters($parameters);
+    public function __construct(array $parameters) {
+        $this->setParameters($parameters);
     }
     
     
@@ -34,23 +34,28 @@ abstract class AbstractController {
         if (!is_array($variables)) $variables = array();
         
         $this->view = $view;
+        unset($view);
   
         if (!file_exists($this->getFilePath())) throw new Exception('View Template not found in ' . $this->getFilePath() . '.', 1387808790);
 
-        foreach ($variables as $key => $value) {
-            $$key = $value;
-        }
+        extract($variables);
+
+        ob_start();
+        include $this->getFilePath();
+        $content = ob_get_clean();
+
+        ob_start();
+        include VIEW_PATH . 'layout.php';
+        $layout = ob_get_clean();
         
-        unset($key, $value, $view, $variables);
-        
-        return include $this->getFilePath();
+        return $layout;
     }
     
     
     /**
      * @return string
      */
-    public function getFilePath(){
+    private function getFilePath(){
         return VIEW_PATH . $this->view . '.php';
     }
     

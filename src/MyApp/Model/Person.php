@@ -1,5 +1,5 @@
 <?php
-namespace MyMVC\Model;
+namespace TinyMVC\Model;
 
 class Person {
     

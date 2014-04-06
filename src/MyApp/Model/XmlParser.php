@@ -1,5 +1,5 @@
 <?php
-namespace MyMVC\Model;
+namespace TinyMVC\Model;
 
 use SimpleXMLElement;
 use MyMVC\Model;

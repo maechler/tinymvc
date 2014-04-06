@@ -1,18 +1,21 @@
 <?php
-namespace MyMVC\Globals;
+namespace TinyMVC;
 
-use MyMVC\Controller\AbstractController;
+use TinyMVC\Model\App;
+use TinyMVC\Model\Logger;
+use TinyMVC\Controller\ErrorController;
 use Exception;
-use ReflectionClass;
 
 try {
-    define('START_TIME', microtime(true));
-    require_once 'sys/globals.php';
+    require_once 'conf/globals.php';
+
+    $app = new App();
+    $app->run();
+/*
+    $uriParts          = explode('/', $_SERVER['REQUEST_URI']);
     
-    $parameters        = $_GET + $_POST;
-    
-    $controllerName    = isset($parameters['controller']) ? $parameters['controller'] : DEFAULT_CONTROLLER;
-    $actionName        = isset($parameters['action']) ? $parameters['action'] : DEFAULT_ACTION;
+    $controllerName    = !empty($uriParts[1]) ? $uriParts[1] : DEFAULT_CONTROLLER;
+    $actionName        = !empty($uriParts[2]) ? $uriParts[2] : DEFAULT_ACTION;
 
     $controllerClass   = CONTROLLER_NAMESPACE . $controllerName . 'Controller';
     $actionMethod      = $actionName . 'Action';
@@ -23,8 +26,19 @@ try {
         
     $controller = new $controllerClass($parameters);
     echo $controller->$actionMethod();
-
+*/
+    throw new Exception("hi");
 } catch(Exception $e) {
-    echo 'Oops an Error occured! <br>';
-    echo '<strong>' . $e->getMessage() . '</strong> Code: ' . $e->getCode() . '<br>';
+    try {
+        Logger::logException(Logger::UNCAUGHT_EXCEPTION, $e);
+        $controller = new ErrorController(array());
+        
+        echo $controller->pageNotFoundAction();
+        
+    } catch (Exception $e) {
+        Logger::logException(Logger::FATAL_EXCEPTION, $e);
+        
+        echo 'Oops, an unexpected Error occured! <br>' .
+             'Please try again later.';
+    }
 }

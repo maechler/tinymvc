@@ -1,7 +1,6 @@
 <?php
 namespace MyMVC\Globals;
 
-use MyMVC\Controller\AbstractController;
 use Exception;
 use ReflectionClass;
 
@@ -18,11 +17,11 @@ try {
     $actionMethod      = $actionName . 'Action';
     
     $controllerReflection = new ReflectionClass($controllerClass);
-    if (!$controllerReflection->isSubclassOf(CONTROLLER_NAMESPACE . 'AbstractController')) throw new Exception($controllerClass . ' is not an AbstractController ', 1387750158);
-    if (!$controllerReflection->hasMethod($actionMethod)) throw new Exception('Action ' . $actionMethod . ' not found in Class ' . $controllerClass, 1387750068);
+    if ( !$controllerReflection->isSubclassOf(CONTROLLER_NAMESPACE . 'AbstractController') ) throw new Exception($controllerClass . ' is not an AbstractController ', 1387750158);
+    if ( !$controllerReflection->hasMethod($actionMethod) ) throw new Exception('Action ' . $actionMethod . ' not found in Class ' . $controllerClass, 1387750068);
         
     $controller = new $controllerClass($parameters);
-    echo $controller->$actionMethod();
+    $controller->$actionMethod();
 
 } catch(Exception $e) {
     echo 'Oops an Error occured! <br>';

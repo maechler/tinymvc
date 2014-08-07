@@ -11,12 +11,10 @@ class XmlParser {
      */
     protected $simpleXMLElement;
 
-
     /**
      * @var Array
      */
     protected $xmlData = array();
-
 
     /**
      * @var String $xmlURL
@@ -24,7 +22,6 @@ class XmlParser {
     public function __construct($xmlURL) {
         $this->simpleXMLElement = new SimpleXMLElement($xmlURL, NULL, TRUE);
     }
-
 
     /**
      * @return void
@@ -36,12 +33,11 @@ class XmlParser {
         }
     }
 
-
     /**
      * @return array
      */
     public function getXMLData() {
-        return is_array($this->xmlData) ? $this->xmlData : array();
+        return $this->xmlData;
     }
 
 }

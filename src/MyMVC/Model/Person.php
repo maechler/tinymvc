@@ -6,32 +6,27 @@ class Person {
     /**
      * @var string
      */
-    protected $name;
-    
+    protected $name = '';
+
+    /**
+     * @var string
+     */
+    protected $email = '';
     
     /**
      * @var string
      */
-    protected $email;
-    
-    
-    /**
-     * @var string
-     */
-    protected $company;
-    
+    protected $company = '';
     
     /**
      * @var string
      */
-    protected $city;
-    
+    protected $city = '';
     
     /**
      * @var integer
      */
-    protected $id;
-    
+    protected $id = 0;
     
     /**
      * @param string $name
@@ -48,88 +43,78 @@ class Person {
         $this->setId($id);
     }
     
-    
     /**
      * @param string $name
      * @return void
      */
     protected function setName($name){
-        $this->name = is_string($name) ? $name : '';
+        if ( is_string($name) ) $this->name = $name;
     }
-    
     
     /**
      * @return string
      */
     public function getName(){
-        return is_string($this->name) ? $this->name : '';
+        return $this->name;
     }
-    
     
     /**
      * @param string $email
      * @return void
      */
     protected function setEmail($email){
-        $this->email = is_string($email) ? $email : '';
+        if ( is_string($email) ) $this->email = $email;
     }
-    
     
     /**
      * @return string
      */
     public function getEmail(){
-        return is_string($this->email) ? $this->email : '';
+        return $this->email;
     }
-    
     
     /**
      * @param string $company
      * @return void
      */
     protected function setCompany($company){
-        $this->company = is_string($company) ? $company : '';
+        if ( is_string($company) ) $this->company = $company;
     }
-    
     
     /**
      * @return string
      */
     public function getCompany(){
-        return is_string($this->company) ? $this->company : '';
+        return $this->company;
     }
-    
-    
+
     /**
      * @param string $city
      * @return void
      */
     protected function setCity($city){
-        $this->city = is_string($city) ? $city : '';
+        if ( is_string($city) ) $this->city = $city;
     }
-    
-    
+
     /**
      * @return string
      */
     public function getCity(){
-        return is_string($this->city) ? $this->city : '';
+        return $this->city;
     }
-    
-    
+
     /**
      * @param integer $id
      * @return void
      */
     protected function setId($id){
-        $this->id = is_integer($id) ? $id : 0;
+        if ( is_integer($id) ) $this->id = $id;
     }
-    
     
     /**
      * @return integer
      */
     public function getId(){
-        return is_int($this->id) ? $this->id : 0;
+        return $this->id;
     }
 }

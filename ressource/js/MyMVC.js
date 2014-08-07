@@ -5,6 +5,4 @@ MyMVC = {
     }
 }
 
-jQuery(function(){
-    MyMVC.init();
-});
+jQuery(MyMVC.init.bind(MyMVC));

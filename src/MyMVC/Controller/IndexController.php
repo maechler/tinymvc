@@ -3,9 +3,6 @@ namespace MyMVC\Controller;
 
 use MyMVC\Model\XmlParser;
 
-use MyMVC\Controller\AbstractController;
-use MyMVC\Model;
-
 class IndexController extends AbstractController {
     
     /**
@@ -15,7 +12,7 @@ class IndexController extends AbstractController {
         $xmlParser = new XmlParser(XML_PATH . 'tinyPersonData.xml');
         $xmlParser->parseXML();
         
-        return $this->render('index', array(
+        $this->render('pages/index', array(
             'xmlData' => $xmlParser->getXMLData(),
             'title' => 'List of some Persons'
         ));
